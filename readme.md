@@ -6,7 +6,7 @@ ZeroMQ 3 bindings for OCaml
 
 * [OCaml 3.12](http://caml.inria.fr/)
 * [Findlib](http://projects.camlcity.org/projects/findlib.html)
-* [ZeroMQ 3.*.*](http://www.zeromq.org/intro:get-the-software)
+* [ZeroMQ 3.0.0](http://www.zeromq.org/intro:get-the-software)
 
 ## Install:
 
@@ -32,6 +32,9 @@ Zmq.bind s1 "tcp://*:5555";;
 Zmq.connect s2 "tcp://localhost:5555";;
 Zmq.send s2 "Hello";;
 let msg = Zmq.recv s1;;
+Zmq.close s1;;
+Zmq.close s2;;
+Zmq.term c;;
 ```
 
 ### Using options
@@ -40,13 +43,23 @@ let msg = Zmq.recv s1;;
 let c = Zmq.init 1;;
 let s1 = Zmq.socket c Zmq.rep;;
 Zmq.setsockopt s1 Zmq.subscribe "lol";;
+Zmq.close s1;;
+Zmq.term c;;
+```
+
+### More
+
+Check the examples folder. Compile the examples with:
+
+``` sh
+$ make example
 ```
 
 ## Thanks
 
 * wagerlabs (Joel Reymont) - implemented poll and the typing of sockets with variants
 * little-arhat (Roman Sokolov) - implemented the file descriptor option
-*  bashi-bazouk (Brian Ledger) - inspired the new implementation for the socket options
+* bashi-bazouk (Brian Ledger) - inspired the new implementation for the socket options
 
 ## Copyright
 

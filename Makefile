@@ -15,5 +15,9 @@ uninstall:
 
 reinstall: uninstall install
 
+example:
+	$(MAKE) -C examples all
+
 clean:
 	$(MAKE) -C src clean
+	$(MAKE) -C examples clean
