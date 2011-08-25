@@ -1,0 +1,5 @@
+version = "pre release"
+description = "ZeroMQ 3 bindings for OCaml"
+archive(byte) = "zmq.cma"
+archive(native) = "zmq.cmxa"
+exists_if = "zmq.cma"
