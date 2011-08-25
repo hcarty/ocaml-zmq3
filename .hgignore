@@ -2,3 +2,11 @@ syntax: glob
 
 *.swp
 .DS_Store
+*.so
+*.a
+*.cma
+*.cmi
+*.cmo
+*.cmx
+*.cmxa
+*.o
