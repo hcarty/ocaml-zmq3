@@ -10,3 +10,5 @@ syntax: glob
 *.cmx
 *.cmxa
 *.o
+*.ipc
+*.exe

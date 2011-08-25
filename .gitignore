@@ -8,3 +8,5 @@
 *.cmx
 *.cmxa
 *.o
+*.ipc
+*.exe
