@@ -333,7 +333,11 @@ CAMLprim value getsockopt_stub(value sock, value sockopt) {
             size_t size = sizeof(buffer);
             error = zmq_getsockopt(socket->wrapped, native_sockopt, buffer, &size);
             stub_raise_if (error == -1);
-            result = caml_copy_string(buffer);
+            if (size == 0) {
+                result = EMPTY_STRING;
+            } else {
+                result = caml_copy_string(buffer);
+            }
         }
         break;            
 
@@ -401,8 +405,12 @@ CAMLprim value recv_stub(value socket, value rcv_option) {
     stub_raise_if (result == -1);
 
     size_t size = zmq_msg_size (&request);
-    message = caml_alloc_string(size);
-    memcpy (String_val(message), zmq_msg_data (&request), size);
+    if (size == 0) {
+        message = EMPTY_STRING;
+    } else {
+        message = caml_alloc_string(size);
+        memcpy (String_val(message), zmq_msg_data (&request), size);
+    }
     result = zmq_msg_close(&request);
     stub_raise_if (result == -1);
     CAMLreturn (message);
