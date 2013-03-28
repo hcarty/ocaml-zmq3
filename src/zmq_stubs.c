@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <strings.h>
+#include <string.h>
 
 #include <caml/alloc.h>
 #include <caml/callback.h>
@@ -24,6 +24,9 @@ static value const EMPTY_STRING = Atom(String_tag);
 static value *ZMQ_EXCEPTION_NAME;
 static value POLL_IN_HASH;
 static value POLL_OUT_HASH;
+
+#define POLL_IN 1
+#define POLL_OUT 2
 
 CAMLprim void stub_init () {
     CAMLparam0 ();
@@ -294,7 +297,6 @@ CAMLprim value getsockopt_stub(value sock, value sockopt) {
         case ZMQ_RCVTIMEO:
         case ZMQ_SNDTIMEO:
         case ZMQ_RCVMORE:
-        case ZMQ_RCVLABEL:
         case ZMQ_TYPE:
         {   
             int res;
